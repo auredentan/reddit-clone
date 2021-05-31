@@ -10,20 +10,22 @@ import {
 	FaRegArrowAltCircleDown,
 } from 'react-icons/fa'
 import { Button } from '@chakra-ui/button'
+import { PostsDisplayMode } from './Publications'
 
 const UserLink = ({ userName }) => {
-	return <Link href={`https://reddit.com/user/{userName}`}>u/{userName}</Link>
+	return <Link href={`https://reddit.com/user/${userName}`}>u/{userName}</Link>
 }
 
 interface RedditPostCardProps {
 	post: IRedditPost
+	displayMode: PostsDisplayMode
 }
-const RedditPostCard = ({ post }: RedditPostCardProps) => {
+const RedditPostCard = ({ post, displayMode }: RedditPostCardProps) => {
 	const created_diff = dayjs(post.created).fromNow()
 	return (
 		<Box
 			padding="8px"
-			marginBottom="10px"
+			marginBottom={displayMode === 'card' && '10px'}
 			borderRadius="lg"
 			borderWidth="1px"
 			overflow="hidden"
@@ -47,19 +49,21 @@ const RedditPostCard = ({ post }: RedditPostCardProps) => {
 							{post.url}
 						</Link>
 					</div>
-					<div>
-						<Stack direction="row" alignItems="center">
-							<Button variant="ghost" leftIcon={<ChatIcon />}>
-								{post.num_comments} Commentaires
-							</Button>
-							<Button variant="ghost" leftIcon={<Icon as={FaShare} />}>
-								Partager
-							</Button>
-							<Button variant="ghost" leftIcon={<Icon as={FaRegBookmark} />}>
-								Sauvegarder
-							</Button>
-						</Stack>
-					</div>
+					{displayMode !== 'compact' && (
+						<div>
+							<Stack direction="row" alignItems="center">
+								<Button variant="ghost" leftIcon={<ChatIcon />}>
+									{post.num_comments} Commentaires
+								</Button>
+								<Button variant="ghost" leftIcon={<Icon as={FaShare} />}>
+									Partager
+								</Button>
+								<Button variant="ghost" leftIcon={<Icon as={FaRegBookmark} />}>
+									Sauvegarder
+								</Button>
+							</Stack>
+						</div>
+					)}
 				</Stack>
 			</Stack>
 		</Box>

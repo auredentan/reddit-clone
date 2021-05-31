@@ -5,6 +5,7 @@ import { RedditPost as IRedditPost } from '../../types/redditPost'
 import { SubredditAboutInfos } from '../../types/subredditAboutInfos'
 import About from './About'
 import Publications from './Publications'
+import RedditCopyrights from './RedditCopyrights'
 
 interface SubredditTabsProps {
 	posts: IRedditPost[]
@@ -26,9 +27,10 @@ const SubredditTabs = ({ posts, aboutInfos }: SubredditTabsProps) => {
 						<div>
 							<Publications posts={posts} />
 						</div>
-						<div>
+						<Stack direction="column" spacing="24px">
 							<About aboutInfos={aboutInfos} />
-						</div>
+							<RedditCopyrights />
+						</Stack>
 					</Stack>
 				</TabPanel>
 				<TabPanel>

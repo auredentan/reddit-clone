@@ -1,4 +1,5 @@
 import { Box, Divider, Stack } from '@chakra-ui/layout'
+import dayjs from 'dayjs'
 import React from 'react'
 import { SubredditAboutInfos } from '../../types/subredditAboutInfos'
 
@@ -6,6 +7,7 @@ interface AboutProps {
 	aboutInfos: SubredditAboutInfos
 }
 const About = ({ aboutInfos }: AboutProps) => {
+	const creationDate = dayjs(aboutInfos.created).format('LL')
 	return (
 		<Box borderRadius="lg" borderWidth="1px" overflow="hidden">
 			<Box bg="#3d9494" padding="12px">
@@ -28,9 +30,7 @@ const About = ({ aboutInfos }: AboutProps) => {
 					</Stack>
 					<Divider marginBottom="8px" marginTop="8px" />
 					<div>
-						<div>{aboutInfos.created}</div>
-						<div>Themeatiques</div>
-						<div>Tag</div>
+						<div>Crée le {creationDate}</div>
 					</div>
 				</div>
 			</Box>

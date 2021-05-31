@@ -76,7 +76,13 @@ const Navbar = () => {
 										<MenuItem
 											icon={<MoonIcon />}
 											command={
-												(<Switch size="md" onChange={toggleColorMode} />) as any
+												(
+													<Switch
+														size="md"
+														isChecked={colorMode === 'dark'}
+														onChange={toggleColorMode}
+													/>
+												) as any
 											}
 										>
 											Mode nocturne
